@@ -9,7 +9,7 @@ image-service:
     DB_USER: postgres
     DB_PORT: 5432
     DB_NAME: minikafka
-    STORAGE_ENDPOINT: "http://minio.kafka.ophkmh.com:8080"
+    STORAGE_ENDPOINT: "http://minio.kafka.ophkmh.com"
     STORAGE_BUCKET: mini-kafka
     KAFKA_BROKERS: "kafka.kafka.svc.cluster.local:9092"
     PORT: 8080
