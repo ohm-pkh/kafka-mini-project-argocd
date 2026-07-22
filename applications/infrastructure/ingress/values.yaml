@@ -1,6 +1,5 @@
 ingress-nginx:
   controller:
-
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
 
@@ -11,22 +10,3 @@ ingress-nginx:
       name: nginx
       enabled: true
       default: true
-
-    admissionWebhooks:
-      enabled: true
-
-      createSecretJob:
-        enabled: true
-
-      patch:
-        enabled: true
-        enabledByDefault: true
-
-    config:
-      use-forwarded-headers: "true"
-
-    replicaCount: 1
-
-    containerPort:
-      http: 80
-      https: 443
