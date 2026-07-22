@@ -5,6 +5,8 @@ metadata:
   name: image-service
   labels:
     app: image-service
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: {{ $svc.replicaCount | default 1 }}
   selector:

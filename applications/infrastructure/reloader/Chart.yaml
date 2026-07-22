@@ -1,0 +1,12 @@
+apiVersion: v2
+name: reloader-setup
+description: Install Stakater Reloader
+type: application
+
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+  - name: reloader
+    version: "2.2.14"
+    repository: "https://stakater.github.io/stakater-charts"
