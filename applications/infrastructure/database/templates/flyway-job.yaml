@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-flyway
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: flyway
+          image: {{ .Values.flyway.image.repository }}:{{ .Values.flyway.image.tag }}
+          command:
+            - sh
+            - -c
+
+          args:
+            - |
+              echo "Waiting for PostgreSQL..."
+
+              until flyway info; do
+                echo "PostgreSQL not ready, retrying..."
+                sleep 5
+              done
+
+              echo "Running migration..."
+              flyway migrate
+          env:
+            - name: FLYWAY_URL
+              value: {{ .Values.flyway.database.url }}
+
+            - name: FLYWAY_USER
+              value: postgres
+
+            - name: FLYWAY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.flyway.database.secretName }}
+                  key: postgres-password
+
+            - name: FLYWAY_LOCATIONS
+              value: filesystem:/flyway/sql

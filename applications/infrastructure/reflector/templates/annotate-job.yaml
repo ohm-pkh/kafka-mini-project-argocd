@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: reflector-annotate-secrets
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      serviceAccountName: reflector-annotator
+      restartPolicy: Never
+      containers:
+        - name: annotate
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              {{- range .Values.secretsToReflect }}
+              echo "Annotating secret {{ .name }} in namespace {{ .sourceNamespace }}"
+              kubectl annotate secret {{ .name }} -n {{ .sourceNamespace }} \
+                reflector.v1.k8s.emberstack.com/reflection-allowed="true" \
+                reflector.v1.k8s.emberstack.com/reflection-auto-enabled="true" \
+                reflector.v1.k8s.emberstack.com/reflection-auto-namespaces="{{ join "," .targetNamespaces }}" \
+                --overwrite
+              {{- end }}

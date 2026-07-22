@@ -1,0 +1,8 @@
+frontend:
+  image:
+    repository: ophkmh/kafka-mini-project-ui
+    tag: "v0.2"
+  
+  service:
+    type: ClusterIP
+    port: 80

@@ -1,0 +1,12 @@
+ingress-nginx:
+  controller:
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+
+    service:
+      enabled: false
+
+    ingressClassResource:
+      name: nginx
+      enabled: true
+      default: true

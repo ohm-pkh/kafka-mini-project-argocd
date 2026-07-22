@@ -1,0 +1,17 @@
+log-service:
+  replicaCount: 3
+  image:
+    repository: ophkmh/kafka-mini-project-log-service
+    tag: "v0.3"
+
+  env:
+    DB_HOST: "postgres-postgresql.database.svc.cluster.local"
+    DB_USER: postgres
+    DB_PORT: 5432
+    DB_NAME: minikafka
+    KAFKA_BROKERS: "kafka.kafka.svc.cluster.local:9092"
+    PORT: 8080
+    
+
+  secretName: 
+    - postgres-postgresql

@@ -1,0 +1,19 @@
+zookeeper:
+  image:
+    repository: confluentinc/cp-zookeeper
+    tag: 7.3.0
+
+  service:
+    port: 2181
+
+kafka:
+  image:
+    repository: confluentinc/cp-kafka
+    tag: 7.3.0
+
+  service:
+    port: 9092
+
+  brokerId: 1
+
+  advertisedListener: kafka:9092

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: minio
+  namespace: argocd
+
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/ophkmh/kafka-mini-project-argocd.git
+    targetRevision: main
+    path: applications/infrastructure/minio
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

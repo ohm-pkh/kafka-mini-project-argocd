@@ -1,0 +1,11 @@
+{{- $svc := index .Values "image-test-service" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-test-service
+spec:
+  selector:
+    app: image-test-service
+  ports:
+    - port: {{ $svc.env.PORT }}
+      targetPort: {{ $svc.env.PORT }}

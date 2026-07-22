@@ -1,0 +1,11 @@
+{{- $svc := index .Values "log-service" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-service
+spec:
+  selector:
+    app: log-service
+  ports:
+    - port: {{ $svc.env.PORT }}
+      targetPort: {{ $svc.env.PORT }}

@@ -1,0 +1,20 @@
+image-service:
+  replicaCount: 3
+  image:
+    repository: ophkmh/kafka-mini-project-image-service
+    tag: "v0.5"
+
+  env:
+    DB_HOST: "postgres-postgresql.database.svc.cluster.local"
+    DB_USER: postgres
+    DB_PORT: 5432
+    DB_NAME: minikafka
+    STORAGE_ENDPOINT: "http://minio.kafka.ophkmh.com:8080"
+    STORAGE_BUCKET: mini-kafka
+    KAFKA_BROKERS: "kafka.kafka.svc.cluster.local:9092"
+    PORT: 8080
+    
+
+  secretName: 
+    - postgres-postgresql
+    - minio

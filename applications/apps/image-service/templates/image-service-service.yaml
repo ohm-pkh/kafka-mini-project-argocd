@@ -1,0 +1,11 @@
+{{- $svc := index .Values "image-service" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-service
+spec:
+  selector:
+    app: image-service
+  ports:
+    - port: {{ $svc.env.PORT }}
+      targetPort: {{ $svc.env.PORT }}

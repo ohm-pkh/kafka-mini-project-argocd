@@ -1,0 +1,17 @@
+reflector: {}
+
+# ---- รายการ secret ที่ต้องการ sync ข้าม namespace ----
+secretsToReflect:
+  - name: postgres-postgresql
+    sourceNamespace: database
+    targetNamespaces:
+      - image-service
+      - image-test-service
+      - log-service
+
+  - name: minio
+    sourceNamespace: minio
+    targetNamespaces:
+      - image-service
+      - image-test-service
+      - log-service

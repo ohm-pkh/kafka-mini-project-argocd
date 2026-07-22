@@ -1,0 +1,20 @@
+kafka-ui:
+  replicaCount: 1
+
+  # ---- ตั้งค่าเชื่อมต่อ Kafka cluster ----
+  envs:
+    config:
+      KAFKA_CLUSTERS_0_NAME: "local"
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka.kafka.svc.cluster.local:9092"
+      KAFKA_CLUSTERS_0_ZOOKEEPER: "zookeeper.kafka.svc.cluster.local:2181"
+      AUTH_TYPE: "DISABLED"
+      MANAGEMENT_HEALTH_LDAP_ENABLED: "FALSE"
+    secret: {}
+    secretMappings: {}
+    configMappings: {}
+
+  # ---- Service ----
+  service:
+    type: ClusterIP
+    port: 80
+    labels: {}

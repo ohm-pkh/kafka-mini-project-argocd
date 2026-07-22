@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: log-service
+  namespace: argocd
+
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/ophkmh/kafka-mini-project-argocd.git
+    targetRevision: main
+    path: applications/apps/log-service
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: log-service
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
