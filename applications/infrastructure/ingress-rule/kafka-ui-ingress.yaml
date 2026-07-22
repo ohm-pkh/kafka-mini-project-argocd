@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kafka-ui-ingress
-  namespace: ingress
+  namespace: kafka-ui
 spec:
   ingressClassName: nginx
 
@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: kafka-ui-service
+                name: kafka-ui
                 port:
                   number: 80
