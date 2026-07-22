@@ -1,28 +1,21 @@
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-
 metadata:
-  name: ingress
+  name: ingress-rules
   namespace: argocd
-
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
-
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
-
   source:
     repoURL: https://github.com/ohm-pkh/kafka-mini-project-argocd.git
     targetRevision: main
-    path: applications/infrastructure/ingress
-
+    path: applications/infrastructure/ingress-rule
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress
-
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
