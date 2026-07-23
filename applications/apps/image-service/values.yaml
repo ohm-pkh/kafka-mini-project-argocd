@@ -2,7 +2,7 @@ image-service:
   replicaCount: 3
   image:
     repository: ophkmh/kafka-mini-project-image-service
-    tag: "v0.5"
+    tag: "8bbad2bf2bff701db57db9d29a2ded438afd5ace"
 
   env:
     DB_HOST: "postgres-postgresql.database.svc.cluster.local"
