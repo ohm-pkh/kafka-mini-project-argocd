@@ -40,12 +40,12 @@ spec:
             - name: STORAGE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: minio
+                  name: minio-sealed
                   key: rootUser
             - name: STORAGE_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: minio
+                  name: minio-sealed
                   key: rootPassword
 
           envFrom:

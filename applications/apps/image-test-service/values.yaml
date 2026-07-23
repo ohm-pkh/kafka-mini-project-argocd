@@ -19,4 +19,4 @@ image-test-service:
 
   secretName: 
     - postgres-postgresql
-    - minio
+    - minio-sealed

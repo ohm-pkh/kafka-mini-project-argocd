@@ -9,7 +9,7 @@ secretsToReflect:
       - image-test-service
       - log-service
 
-  - name: minio
+  - name: minio-sealed
     sourceNamespace: minio
     targetNamespaces:
       - image-service
