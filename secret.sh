@@ -17,7 +17,7 @@ kubectl create secret generic postgres-postgresql \
 
 echo "Generated DB sealed secret"
 
-kubectl create secret generic minio \
+kubectl create secret generic minio-sealed \
   --namespace minio \
   --from-literal=rootUser="$MINIO_ROOT_USER" \
   --from-literal=rootPassword="$MINIO_ROOT_PASSWORD" \
