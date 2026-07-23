@@ -19,8 +19,8 @@ echo "Generated DB sealed secret"
 
 kubectl create secret generic minio \
   --namespace minio \
-  --from-literal=root-user="$MINIO_ROOT_USER" \
-  --from-literal=root-password="$MINIO_ROOT_PASSWORD" \
+  --from-literal=rootUser="$MINIO_ROOT_USER" \
+  --from-literal=rootPassword="$MINIO_ROOT_PASSWORD" \
   --dry-run=client \
   -o yaml \
 | kubeseal \
