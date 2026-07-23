@@ -1,6 +1,7 @@
 postgresql:
   auth:
     database: minikafka
+    existingSecret: postgres-postgresql
 
   primary:
     persistence:

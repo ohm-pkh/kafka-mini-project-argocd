@@ -1,0 +1,10 @@
+apiVersion: v2
+name: helm-init-chart
+version: 1.0.0
+appVersion: 1.23.0
+description: A sealed-secrets chart wrapper for cluster intialization
+
+dependencies:
+  - name: sealed-secrets
+    version: "2.18.6"
+    repository: "https://bitnami-labs.github.io/sealed-secrets/"

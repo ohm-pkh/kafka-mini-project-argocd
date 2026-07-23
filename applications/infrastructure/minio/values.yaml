@@ -1,5 +1,7 @@
 minio:
   mode: standalone
+  auth:
+    existingSecret: minio
 
   persistence:
     enabled: true
