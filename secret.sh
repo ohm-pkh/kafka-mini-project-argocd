@@ -6,14 +6,14 @@ source .env
 
 kubectl create secret generic postgres-postgresql \
   --namespace database \
-  --from-literal=postgres-password="$DB_PASSWORD \
+  --from-literal=postgres-password="$DB_PASSWORD" \
   --dry-run=client \
   -o yaml \
 | kubeseal \
     --controller-name sealed-secrets-controller \
     --controller-namespace sealed-secrets \
     --format yaml \
-    > applications/secret/postgres-sealed-secret.yaml
+    > ./applications/infrastructure/secret/postgres-sealed-secret.yaml
 
 echo "Generated DB sealed secret"
 
@@ -27,6 +27,6 @@ kubectl create secret generic minio \
     --controller-name sealed-secrets-controller \
     --controller-namespace sealed-secrets \
     --format yaml \
-    > applications/secret/minio-sealed-secret.yaml
+    > ./applications/infrastructure/secret/minio-sealed-secret.yaml
 
 echo "Generated MINIO sealed secret"
